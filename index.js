@@ -127,16 +127,16 @@ function countByRating(movies) {
 
   let countOfRatings = {};
 
-  for (let i = 0; i < movies.length; i++){
-    if(!countOfRatings[movies[i].rated]){
+  for (let i = 0; i < movies.length; i++) {
+    if(!countOfRatings[movies[i].rated]) {
       countOfRatings[movies[i].rated] = 1;
-    }else {
+    } else {
       countOfRatings[movies[i].rated] += 1;
     }
   }
   return countOfRatings;
 }
-console.log(countByRating(exampleMovies, "R"));
+// console.log(countByRating(exampleMovies, "R"));
 
 /**
  * findById()
@@ -171,7 +171,7 @@ function findById(movies, id) {
   }
   return null;
 }
-console.log(findById(exampleMovies, "tt3606756"));
+// console.log(findById(exampleMovies, "tt3606756"));
 
 /**
  * filterByGenre()
@@ -193,16 +193,23 @@ console.log(findById(exampleMovies, "tt3606756"));
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
+// return [] if inputted movies array empty -> guard clause not needed
+// case insensitive -> handle by defining both parameter, ->
+// and movie.genre to .toLOwerCase (converts to string), .includes ->
+// returns true if value found, else false & is case sensitive.
+
 function filterByGenre(movies, genre) {
- if(movies.length === 0) {
-  return [];
 
- let 
- }
+  let genreArr = [];
 
-
-  return [];
+  for (let movie of movies) {
+    if(movie.genre.toLowerCase().includes(genre.toLowerCase())) {
+    genreArr.push(movie);
+    }
+  }
+  return genreArr;
 }
+// console.log(filterByGenre(exampleMovies, "Action"));
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -226,7 +233,37 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+// define default value. loop.
+// Split movie.released, access the year positioned at index[2]
+// and IF it <= given param 'year'
+// push movie, an obj to array
+
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+
+  // let movieArr = [];
+
+  // for (let movie of movies) {
+  //   if (movie.released.split("")[2]<= year) {
+  //   movieArr.push(movie)
+  //   }
+  // }
+  // return movieArr;
+
+  let movieArr = [];
+  let movieReleasedYear = [];
+
+  if(!movies.length) {
+    return movieArr;
+  }
+  for(let movie of movies) {
+    let movieReleased = movie.released;
+    movieReleasedYear = movieReleased.split(" ");
+    if(movieReleasedYear[2] <= year) {
+      movieArr.push(movie);
+    }
+  }
+  return movieArr;
+}
 
 /**
  * getBiggestBoxOfficeMovie()
@@ -239,7 +276,21 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
-function getBiggestBoxOfficeMovie() {}
+// declare variable -> set to 0, null
+// Number, slice, split, join
+function getBiggestBoxOfficeMovie(movies) {
+  let bigBoxMovie = 0;
+  let title = null;
+
+  for(let movie of movies){
+    let newBoxMovie = Number(movie.boxOffice.slice(1).split(",").join(""));
+      if(newBoxMovie > bigBoxMovie){
+        bigBoxMovie = newBoxMovie
+        title = movie.title;
+      }
+  }
+  return title;
+}
 
 // Do not change anything below this line.
 module.exports = {
