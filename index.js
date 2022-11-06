@@ -165,8 +165,7 @@ function findById(movies, id) {
 
   for (let target of movies) {
     if(target.imdbID === id) {
-    target = findTargetID;
-    return target;
+    return findTargetID = target;
     }
   }
   return null;
@@ -279,14 +278,15 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
 // declare variable -> set to 0, null
 // Number, slice, split, join
 function getBiggestBoxOfficeMovie(movies) {
+
   let bigBoxMovie = 0;
   let title = null;
 
-  for(let movie of movies){
+  for(let movie of movies) {
     let newBoxMovie = Number(movie.boxOffice.slice(1).split(",").join(""));
       if(newBoxMovie > bigBoxMovie){
-        bigBoxMovie = newBoxMovie
-        title = movie.title;
+      bigBoxMovie = newBoxMovie
+      title = movie.title;
       }
   }
   return title;
