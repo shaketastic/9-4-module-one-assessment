@@ -34,6 +34,7 @@ const exampleMovies = require("./movies");
 // IF a 'title' is present in any of the elements of movies, PUSH it
 
 function getAllMovieTitles(movies) {
+
   if(!movies.length) {
     return [];
   }
@@ -63,6 +64,7 @@ function getAllMovieTitles(movies) {
 // return in 'Number' format
 
 function getHighestMetascore(movies) {
+
   if(!movies.length) {
     return 0;
   }
@@ -88,7 +90,22 @@ console.log(getHighestMetascore(exampleMovies, 96));
  *  getAverageIMDBRating(movies);
  *  //> 7.76
  */
-function getAverageIMDBRating() {}
+// guard clause : if empty, return 0
+// declare default variable, set to 0 -> accumulate 'total'
+// add up movie.imdbrating && re-assign the 'total' variable 
+
+function getAverageIMDBRating(movies) {
+
+  if(movies.length === 0) {
+    return 0;
+  }
+  let avgTotal = 0;
+
+  for (let movie of movies) {
+    avgTotal += Number(movie.imdbRating);
+  }
+  return avgTotal / movies.length;
+}
 
 /**
  * countByRating()
