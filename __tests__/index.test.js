@@ -77,7 +77,7 @@ describe("getAverageIMDBRating()", () => {
   });
 });
 
-describe.only("countByRating()", () => {
+describe("countByRating()", () => {
   test("should return an object where the keys are ratings and the values are the number of movies with that rating", () => {
     const actual = countByRating(movies);
     const expected = { G: 3, PG: 7 };
@@ -137,7 +137,7 @@ describe("findById()", () => {
   });
 });
 
-describe("filterByGenre()", () => {
+describe.only("filterByGenre()", () => {
   test("should return all movies that include the specified genre", () => {
     const genre = "Mystery";
     const actual = filterByGenre(movies, genre);

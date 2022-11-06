@@ -127,7 +127,7 @@ function countByRating(movies) {
 
   let countOfRatings = {};
 
-  for(let i = 0; i < movies.length; i++){
+  for (let i = 0; i < movies.length; i++){
     if(!countOfRatings[movies[i].rated]){
       countOfRatings[movies[i].rated] = 1;
     }else {
@@ -136,7 +136,7 @@ function countByRating(movies) {
   }
   return countOfRatings;
 }
-
+console.log(countByRating(exampleMovies, "R"));
 
 /**
  * findById()
@@ -152,7 +152,26 @@ function countByRating(movies) {
       // Toy Story 4
     };
  */
-function findById() {}
+// guard clause (return null), define value, loop thru
+// return movie.title if parameter 'id' matches w/ movie.imdbID
+// EX: movies.title: "Toy Story 4" === movie.imdbID: "tt1979376" -> id param
+
+function findById(movies, id) {
+
+  if(movies.length === 0){
+    return null;
+  }
+  let findTargetID = {};
+
+  for (let target of movies) {
+    if(target.imdbID === id) {
+    target = findTargetID;
+    return target;
+    }
+  }
+  return null;
+}
+console.log(findById(exampleMovies, "tt3606756"));
 
 /**
  * filterByGenre()
@@ -174,7 +193,16 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+ if(movies.length === 0) {
+  return [];
+
+ let 
+ }
+
+
+  return [];
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
